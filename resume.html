@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick Anderson - Resume</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+    <style>
+        /* Additional styles for PDF preview */
+        #resume-preview {
+            border: 2px solid var(--border-light);
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            background: var(--background-section);
+            box-shadow: var(--shadow-medium);
+            padding: 1.5rem;
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto 2rem auto;
+        }
+        
+        #resume-canvas {
+            display: block;
+            width: 100%;
+            max-width: 760px;
+            min-width: 260px;
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            margin: 0 auto;
+        }
+        
+        .resume-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        
+        .resume-note {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Nick Anderson</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hobbies.html" class="nav-link">Hobbies</a>
+                </li>
+                <li class="nav-item">
+                    <a href="discover.html" class="nav-link">Discover UMD</a>
+                </li>
+                <li class="nav-item">
+                    <a href="resume.html" class="nav-link active">Resume</a>
+                </li>
+                <li class="nav-item">
+                    <a href="career.html" class="nav-link">Career</a>
+                </li>
+                <li class="nav-item">
+                    <a href="game.html" class="nav-link">Game</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">My Resume</h1>
+                <p class="hero-subtitle">Professional Background & Qualifications</p>
+                <p class="hero-description">A comprehensive overview of my education, skills, and experience</p>
+                <div class="hero-buttons">
+                    <a href="career.html" class="btn btn-secondary">Career Goals</a>
+                    <a href="index.html" class="btn btn-primary">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Resume Preview Section -->
+            <section class="about-section">
+                <div class="section-header">
+                    <h2 class="section-title">Resume Preview</h2>
+                    <p class="section-subtitle">View or download my complete professional resume</p>
+                </div>
+                
+                <div class="about-content" style="text-align: center;">
+                    <div class="about-text">
+                        <p class="lead">Below is a preview of my professional resume. The PDF contains detailed information about my education, skills, experience, and qualifications.</p>
+                        
+                        <p>Feel free to view the full document in a new tab or download it for your records.</p>
+                    </div>
+                    
+                    <div id="resume-preview" style="margin: 2rem auto; min-height: 800px;">
+                        <!-- Canvas where first PDF page will be rendered -->
+                        <canvas id="resume-canvas" style="margin: 0 auto;"></canvas>
+                    </div>
+                    
+                    <div class="resume-note">
+                        <p><strong>Note:</strong> You can also open or download the PDF version for best quality.</p>
+                    </div>
+                    
+                    <div class="resume-actions">
+                        <a href="files/resume.pdf" target="_blank" rel="noopener" class="btn btn-primary">
+                            📄 Open in New Tab
+                        </a>
+                        <a href="files/resume.pdf" download class="btn btn-outline">
+                            ⬇️ Download PDF
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Links Section -->
+            <section class="quick-links-section">
+                <div class="section-header">
+                    <h2 class="section-title">Continue Exploring</h2>
+                    <p class="section-subtitle">Learn more about different aspects of my background</p>
+                </div>
+                <div class="links-grid">
+                    <a href="hobbies.html" class="link-card">
+                        <div class="link-icon">🏒</div>
+                        <h3>My Hobbies</h3>
+                        <p>Discover my interests beyond academics and what keeps me balanced</p>
+                        <span class="link-arrow">Learn more →</span>
+                    </a>
+                    
+                    <a href="discover.html" class="link-card">
+                        <div class="link-icon">🎓</div>
+                        <h3>Discover UMD</h3>
+                        <p>Learn about my experience at University of Minnesota Duluth</p>
+                        <span class="link-arrow">Explore →</span>
+                    </a>
+                    
+                    <a href="career.html" class="link-card">
+                        <div class="link-icon">💼</div>
+                        <h3>Career Aspirations</h3>
+                        <p>My professional goals and the path I'm carving in the finance industry</p>
+                        <span class="link-arrow">Read more →</span>
+                    </a>
+                    
+                    <a href="game.html" class="link-card">
+                        <div class="link-icon">🎮</div>
+                        <h3>Interactive Game</h3>
+                        <p>Take a break and try my custom-built interactive experience</p>
+                        <span class="link-arrow">Play now →</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Nick Anderson</h4>
+                    <p>Finance Major at University of Minnesota Duluth</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="resume.html">Resume</a></li>
+                        <li><a href="career.html">Career</a></li>
+                        <li><a href="hobbies.html">Hobbies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <p>Let's connect and explore opportunities together!</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nick Anderson. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PDF.js from CDN to render a preview image of the first page -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.7.107/pdf.min.js"></script>
+    <script>
+    // Render first page of the PDF into the canvas
+    (function(){
+        const url = 'files/resume.pdf';
+        const canvas = document.getElementById('resume-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // pdf.js worker setup (uses CDN worker)
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.7.107/pdf.worker.min.js';
+
+        pdfjsLib.getDocument(url).promise.then(function(pdf) {
+            return pdf.getPage(1);
+        }).then(function(page) {
+            const viewport = page.getViewport({ scale: 1.0 });
+
+            // Determine desired width in CSS pixels
+            const desiredCssWidth = Math.min(900, window.innerWidth - 40);
+
+            // Use devicePixelRatio for high-DPI rendering
+            const dpr = window.devicePixelRatio || 1;
+            
+            // Increase initial scale for better visibility
+            const initialScale = 1.2;
+
+            const scale = (desiredCssWidth / viewport.width) * initialScale;
+            const renderScale = scale * dpr;
+            const scaledViewport = page.getViewport({ scale: renderScale });
+
+            // Set canvas size in device pixels but style it to the CSS size
+            canvas.width = Math.floor(scaledViewport.width);
+            canvas.height = Math.floor(scaledViewport.height);
+            canvas.style.width = Math.floor(desiredCssWidth) + 'px';
+            canvas.style.height = Math.floor(scaledViewport.height / dpr) + 'px';
+
+            const renderContext = {
+                canvasContext: ctx,
+                viewport: scaledViewport
+            };
+
+            // Clear and render
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            page.render(renderContext);
+        }).catch(function(err){
+            // Show fallback link if rendering fails
+            const preview = document.getElementById('resume-preview');
+            preview.innerHTML = '<p>Preview unavailable. <a href="files/resume.pdf" target="_blank" rel="noopener">Open the resume</a> or <a href="files/resume.pdf" download>download it</a>.</p>';
+            console.error('PDF preview error:', err);
+        });
+    })();
+    </script>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

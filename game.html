@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick Anderson - Interactive Game</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+    <style>
+        /* Game-specific styles */
+        .game-section {
+            background: var(--background-section);
+            border-radius: var(--border-radius-large);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            border: 1px solid var(--border-light);
+            margin-bottom: 2rem;
+        }
+        
+        #game-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            z-index: 1;
+        }
+        
+        #intense-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            border-radius: var(--border-radius);
+        }
+        
+        #maze-canvas {
+            border: 2px solid var(--border-light);
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            margin: 0 auto;
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .game-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .game-input {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--background-light);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-light);
+        }
+        
+        .game-input input {
+            width: 70px;
+            padding: 0.25rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .game-stats {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .game-stat {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .game-instructions {
+            background: var(--background-light);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .game-instructions h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        #game-status {
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .game-controls {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .game-stats {
+                gap: 1rem;
+            }
+            
+            .game-stat {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Nick Anderson</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hobbies.html" class="nav-link">Hobbies</a>
+                </li>
+                <li class="nav-item">
+                    <a href="discover.html" class="nav-link">Discover UMD</a>
+                </li>
+                <li class="nav-item">
+                    <a href="resume.html" class="nav-link">Resume</a>
+                </li>
+                <li class="nav-item">
+                    <a href="career.html" class="nav-link">Career</a>
+                </li>
+                <li class="nav-item">
+                    <a href="game.html" class="nav-link active">Game</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Interactive Maze Game</h1>
+                <p class="hero-subtitle">Take a Break & Have Fun</p>
+                <p class="hero-description">Challenge yourself with this custom-built maze game</p>
+                <div class="hero-buttons">
+                    <a href="index.html" class="btn btn-secondary">Back to Home</a>
+                    <a href="hobbies.html" class="btn btn-primary">Explore Hobbies</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Game Section -->
+            <section class="about-section">
+                <div class="section-header">
+                    <h2 class="section-title">Maze Challenge</h2>
+                    <p class="section-subtitle">Navigate through the maze to reach the goal</p>
+                </div>
+                
+                <div class="game-section">
+                    <div id="game-container">
+                        <div id="intense-bg"></div>
+                        
+                        <div class="game-instructions">
+                            <h3>How to Play</h3>
+                            <p>Use arrow keys or WASD to move your character. Navigate through the maze to reach the green goal square. You can create new mazes with different sizes for varying difficulty levels.</p>
+                        </div>
+                        
+                        <div class="game-controls">
+                            <button id="new-maze" class="btn btn-primary">🎮 New Maze</button>
+                            <div class="game-input">
+                                <label>Rows: <input id="maze-rows" type="number" value="21" min="5" max="101" step="2"></label>
+                            </div>
+                            <div class="game-input">
+                                <label>Cols: <input id="maze-cols" type="number" value="21" min="5" max="101" step="2"></label>
+                            </div>
+                        </div>
+
+                        <canvas id="maze-canvas" width="700" height="700"></canvas>
+
+                        <div class="game-stats">
+                            <span id="timer" class="game-stat">⏱️ Time: 00:00</span>
+                            <span id="difficulty" class="game-stat">🎯 Difficulty: Normal</span>
+                        </div>
+
+                        <p id="game-status"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Links Section -->
+            <section class="quick-links-section">
+                <div class="section-header">
+                    <h2 class="section-title">Continue Exploring</h2>
+                    <p class="section-subtitle">Discover other aspects of my portfolio</p>
+                </div>
+                <div class="links-grid">
+                    <a href="hobbies.html" class="link-card">
+                        <div class="link-icon">🏒</div>
+                        <h3>My Hobbies</h3>
+                        <p>Discover my interests beyond academics and what keeps me balanced</p>
+                        <span class="link-arrow">Learn more →</span>
+                    </a>
+                    
+                    <a href="discover.html" class="link-card">
+                        <div class="link-icon">🎓</div>
+                        <h3>Discover UMD</h3>
+                        <p>Learn about my experience at University of Minnesota Duluth</p>
+                        <span class="link-arrow">Explore →</span>
+                    </a>
+                    
+                    <a href="career.html" class="link-card">
+                        <div class="link-icon">💼</div>
+                        <h3>Career Aspirations</h3>
+                        <p>My professional goals and the path I'm carving in the finance industry</p>
+                        <span class="link-arrow">Read more →</span>
+                    </a>
+                    
+                    <a href="resume.html" class="link-card">
+                        <div class="link-icon">📄</div>
+                        <h3>Resume</h3>
+                        <p>View my detailed professional background and qualifications</p>
+                        <span class="link-arrow">View resume →</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Nick Anderson</h4>
+                    <p>Finance Major at University of Minnesota Duluth</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="resume.html">Resume</a></li>
+                        <li><a href="career.html">Career</a></li>
+                        <li><a href="hobbies.html">Hobbies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <p>Let's connect and explore opportunities together!</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nick Anderson. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
