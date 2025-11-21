@@ -18,9 +18,12 @@
         
         #game-container {
             position: relative;
-            max-width: 1000px;
+            max-width: 100%;
             margin: 0 auto;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         #intense-bg {
@@ -37,8 +40,6 @@
             box-shadow: var(--shadow-medium);
             margin: 0 auto;
             display: block;
-            max-width: 100%;
-            height: auto;
         }
         
         .game-controls {
@@ -191,16 +192,16 @@
                         
                         <div class="game-instructions">
                             <h3>How to Play</h3>
-                            <p>Use arrow keys or WASD to move. Try to get to the green square. You can make new mazes with different sizes (up to 301 rows/cols) if you want it harder or easier.</p>
+                            <p>Use arrow keys or WASD to move. Try to get to the green square.</p>
                         </div>
                         
                         <div class="game-controls">
                             <button id="new-maze" class="btn btn-primary">🎮 New Maze</button>
                             <div class="game-input">
-                                <label>Rows: <input id="maze-rows" type="number" value="21" min="5" max="301" step="2"></label>
+                                <label>Rows: <input id="maze-rows" type="number" value="21" min="5" max="1001" step="2"></label>
                             </div>
                             <div class="game-input">
-                                <label>Cols: <input id="maze-cols" type="number" value="21" min="5" max="301" step="2"></label>
+                                <label>Cols: <input id="maze-cols" type="number" value="21" min="5" max="1001" step="2"></label>
                             </div>
                         </div>
 
